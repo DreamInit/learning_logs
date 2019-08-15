@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic</title>
+</head>
+<body>
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<p>Type:{{ topic }}</p>
+<p>Case list:</p>
+
+<ul>
+{% for entry in entries %}
+    <li>
+        <p>{{ entry.text|linebreaks }}</p>
+        <hr>
+        <q>------Added time: {{ entry.date_added|date:"M d Y H:i" }}</q>
+    </li>
+{% empty %}
+    <li>
+        There is no entry in this type.
+    </li>
+{% endfor %}
+</ul>
+<hr>
+<p>
+    <a href="{% url 'learning_logs:new_entry' topic.id %}">Add New Case</a>
+</p>
+{% endblock content %}
+</body>
+</html>
