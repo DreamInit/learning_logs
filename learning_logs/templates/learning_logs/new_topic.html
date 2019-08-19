@@ -6,13 +6,18 @@
 </head>
 <body>
 {% extends 'learning_logs/base.html' %}
+{% load bootstrap3 %}
+{% block header %}
+    <h2>Add a new type:</h2>
+{% endblock header %}
 
 {% block content %}
-    <p>Add a new type:</p>
-    <form action="{% url 'learning_logs:new_topic' %}" method="post">
+    <form action="{% url 'learning_logs:new_topic' %}" method="post" class="form">
     {% csrf_token %}
-     {{ form.as_p }}
-        <button name="submit">add type</button>
+    {% bootstrap_form form %}
+        {% buttons %}
+        <button name="submit" class="btn btn-primary">add type</button>
+     {% endbuttons %}
     </form>
 {% endblock content %}
 </body>

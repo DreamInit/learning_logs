@@ -7,25 +7,35 @@
 <body>
 {% extends 'learning_logs/base.html' %}
 
-{% block content %}
+{% block header %}
+    <h3>Type:{{ topic }}</h3>
+{% endblock header %}
 
-<p>Type:{{ topic }}</p>
+{% block content %}
 <p>Case list:</p>
 
-<ul>
 {% for entry in entries %}
-    <li>
-        <p>{{ entry.text|linebreaks }}</p>
-        <hr>
-        <q>------Added time: {{ entry.date_added|date:"M d Y H:i" }}</q>
-    </li>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>
+                {{ entry.date_added|date:"M d, Y H:i" }}
+                <small>
+                    <a href="{% url 'learning_logs:edit_entry' entry.id %}">edit case</a>
+                </small>
+            </h4>
+        </div>
+        <div class="panel-body">
+            {{ entry.text|linebreaks }}
+        </div>
+    </div><!-- panel -->
 {% empty %}
     <li>
         There is no entry in this type.
     </li>
 {% endfor %}
-</ul>
+
 <hr>
+
 <p>
     <a href="{% url 'learning_logs:new_entry' topic.id %}">Add New Case</a>
 </p>

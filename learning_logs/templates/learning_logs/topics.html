@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Topics</title>
+    <title>Types</title>
 </head>
 <body>
 {% extends "learning_logs/base.html" %}
+{% block header%}
+    <h2>Types</h2>
+{% endblock header %}
 
 {% block content %}
-
-<p>Types</p>
-<url>
+<ul>
     {% for topic in topics %}
-        <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
-        <br>
+    <li>
+        <h4>
+            <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+        </h4>
+    </li>
     {% empty %}
         <li>No topics have been added yet.</li>
     {% endfor %}
-</url>
-<hr>
-<a href="{% url 'learning_logs:new_topic' %}">Add a new type</a>
+</ul>
+<br>
+<h3><a href="{% url 'learning_logs:new_topic' %}">Add new type</a></h3>
 {% endblock content %}
 </body>
 </html>

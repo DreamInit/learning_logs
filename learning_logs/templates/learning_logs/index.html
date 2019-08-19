@@ -7,9 +7,20 @@
 <body>
 {% extends "learning_logs/base.html" %}
 
+{% block header %}
+    <div class="jumbotron">
+        <h2>Collection test case</h2>
+    </div>
+{% endblock header %}
+
 {% block content %}
-<p>Test Case Collection</p>
-<p>There collection cases in every type.</p>
+    <h2>
+        <a href="{% url 'users:register' %}">Register an account</a> to make
+        you own case ,and list the types you are use.
+    </h2>
+    <h2>
+        There collection cases in all types.
+    </h2>
 {% endblock content %}
 </body>
 </html>
